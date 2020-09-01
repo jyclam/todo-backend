@@ -1,0 +1,26 @@
+{
+  "name": "todo-backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "babel src --out-dir dist",
+    "dev": "nodemon --exec npm run restart",
+    "restart": "rimraf dist && npm run build && npm run start",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "mongoose": "^5.10.2",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.5",
+    "@babel/core": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.1.1",
+    "rimraf": "^3.0.2"
+  }
+}
