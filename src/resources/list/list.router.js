@@ -5,7 +5,7 @@ const router = Router();
 
 // prettier-ignore
 router.route("/")
-.get(controllers.getOne)
+.get(controllers.getMany)
 .post(controllers.createOne);
 
 router

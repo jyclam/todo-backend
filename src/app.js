@@ -1,6 +1,7 @@
 import express from "express";
 import { json, urlencoded } from "body-parser";
 import logger from "morgan";
+import cors from "cors";
 
 import { signUp, signIn, guard } from "./utils/auth";
 import userRouter from "./resources/user/user.router";
@@ -9,6 +10,7 @@ import taskRouter from "./resources/task/task.router";
 
 const app = express();
 
+app.use(cors());
 app.use(logger("dev"));
 app.use(json());
 app.use(urlencoded({ extended: false }));

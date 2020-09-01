@@ -18,7 +18,7 @@ export const getMany = (model) => async (req, res) => {
   try {
     const docs = await model.find({ createdBy: req.user._id }).lean().exec();
 
-    if (!doc) return res.status(400).json({ error: "No records found." });
+    if (!docs) return res.status(400).json({ error: "No records found." });
 
     return res.status(200).json({ data: docs });
   } catch (err) {
