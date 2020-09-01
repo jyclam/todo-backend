@@ -26,7 +26,8 @@ export const signUp = async (req, res) => {
     const token = newToken(user);
     return res.status(201).send({ token });
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    console.error(err);
+    return res.status(500).json({ error: "Error creating account." });
   }
 };
 
@@ -55,14 +56,14 @@ export const signIn = async (req, res) => {
     return res.status(201).send({ token });
   } catch (err) {
     console.error(err);
-    return res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: "Error authenticating." });
   }
 };
 
 export const guard = async (req, res, next) => {
   const bearer = req.headers.authorization;
 
-  if (!bearer || !bearer.statsWith("Bearer "))
+  if (!bearer || !bearer.startsWith("Bearer "))
     return res.status(401).json({ error: "Error parsing token from headers." });
 
   const token = bearer.split("Bearer ")[1].trim();
@@ -71,6 +72,7 @@ export const guard = async (req, res, next) => {
   try {
     payload = await verifyToken(token);
   } catch (err) {
+    console.error(err);
     return res.status(401).json({ error: "Invalid token." });
   }
 
