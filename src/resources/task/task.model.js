@@ -30,6 +30,6 @@ const taskSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-taskSchema.index({ list: 1, name: 1 }, { unique: true });
+taskSchema.index({ user: 1, list: 1 }, { unique: true });
 
 export const Task = mongoose.model("task", taskSchema);
